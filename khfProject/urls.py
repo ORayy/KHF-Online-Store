@@ -20,7 +20,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('khfApp.urls', namespace='store'))
+    path('', include('khfApp.urls', namespace='store')),
+    path('basket/', include('basketApp.urls', namespace='basket'))
 ]
 
 # configuring/utilising MEDIA_URL and MEDIA_ROOT while we're in development area
