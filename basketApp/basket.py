@@ -14,4 +14,26 @@ class Basket():
             basket = self.session['skey'] = {}
         self.basket = basket
 
+    # add to basket function
+    def add(self, product, qty):
+        """
+        Adding and updating the users basket session data
+        """
+        product_id = str(product.id)
+
+        # adding new data to the session
+        if product_id in self.basket:
+            self.basket[product_id]['qty'] = qty
+        else:
+            self.basket[product_id] = {'price': str(product.price), 'qty': qty}
+
+        self.session.modified = True
+
+    # Calculating the number of items/length within our basket
+    def __len__(self):
+        """
+        Get the basket data and count the qty of items
+        """
+        return sum(item['qty'] for item in self.basket.values())
+
 
